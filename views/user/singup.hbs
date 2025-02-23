@@ -1,0 +1,57 @@
+<div class="row d-flex justify-content-center">
+    <!-- Default form register -->
+    <form class="text-center border border-light p-5 mt-5 col-md-4" action="/user/singup" method="POST">
+
+        <p class="h4 mb-4">Sign up</p>
+        {{# if hasErrors}}
+        <div class="alert alert-danger">
+            {{#each messages}}
+            <p>{{this}}</p>
+            {{/each}}
+        </div>
+        {{/if}}
+
+
+        <!-- E-mail -->
+        <label for="email"></label>
+        <input type="email" id="email" name="email" class="form-control mb-4" placeholder="E-mail">
+
+        <!-- Password -->
+        <label for="password"></label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Password"
+            aria-describedby="defaultRegisterFormPasswordHelpBlock">
+        <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+            At least 8 characters and 1 digit
+        </small>
+
+        <!--CSRF Protection-->
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+        <!-- CSRF Protection-->
+        <!-- Newsletter -->
+        <!--    <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
+        <label class="custom-control-label" for="defaultRegisterFormNewsletter">Subscribe to our newsletter</label>
+    </div>
+-->
+        <!-- Sign up button -->
+        <button class="btn btn-info my-4 btn-block" type="submit">Sign Up</button>
+
+        <!-- Social register -->
+        <!--  <p>or sign up with:</p> -->
+        <!--
+    <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
+    <a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
+    <a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
+    <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a>
+-->
+        <hr>
+
+        <!-- Terms of service -->
+        <p>By clicking
+            <em>Sign up</em> you agree to our
+            <a href="" target="_blank">terms of service</a>
+
+    </form>
+
+    <!-- Default form register -->
+</div>

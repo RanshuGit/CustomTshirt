@@ -1,0 +1,81 @@
+{{#if products}}
+
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"> </th>
+                            <th scope="col">Product</th>
+                            <th scope="col" class="text-center">Quantity</th>
+                            <th scope="col" class="text-right">Price</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{# each products}}
+                        <tr>
+                            <td><img class="image-responsive" style="width: 50px; height:50px;"
+                                    src="{{this.item.imagePath}}" /> </td>
+                            <td>{{this.item.title}}</td>
+                            <td class="text-center">
+                                <a href="/reduce/{{this.item._id}}">
+                                    <i class="fa fa-minus-circle"></i>
+                                </a>
+                                {{this.qty}}
+                                <a href="/add/{{this.item._id}}">
+                                    <i class="fa fa-plus-circle"></i>
+                                </a>
+                            </td>
+                            <td class="text-right">Rs.{{this.price}}</td>
+                            <td class="text-right">
+                                <a href="/remove/{{this.item._id}}">
+                                    <button class="btn btn-sm btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>Total Quantity</strong></td>
+                            <td class="text-right"><strong>{{totalqty}}</strong></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>Total</strong></td>
+                            <td class="text-right"><strong>{{totalPrice}}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col mb-2">
+            <div class="row">
+                <div class="col-sm-12  col-md-6">
+                    <a href="/">
+                        <button class="btn btn-block btn-light">Continue Shopping</button>
+                    </a>
+                </div>
+                <div class="col-sm-12 col-md-6 text-right">
+                    <a href="/checkout">
+                        <button class="btn  btn-block btn-success text-uppercase">Checkout</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {{else}}
+
+        <div class="row">
+            <h2 class="text-primary mb-0"> No Items in the cart lets shop.</h2>
+        </div>
+        {{/if}}
+    </div>
+</div>

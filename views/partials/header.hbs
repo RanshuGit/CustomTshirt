@@ -1,0 +1,65 @@
+<!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark navbar-dark "
+    style="padding-left:5px; background-color : #00695C;">
+    <a class="navbar-brand" href="/">
+        <img class="rounded-circle" src="../../images/logo.jpg" height="30" alt="" loading="lazy" /> <strong style="font-weight: bold">Printed Tshirt
+            Designer</strong>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+        aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item {{#if hclicked}}active{{/if}}">
+                <a class="nav-link" href="/">Home
+                </a>
+            </li>
+            <li class="nav-item {{#if cclicked}}active{{/if}}">
+                <a class="nav-link" href="/customize">Customize</a>
+            </li>
+            <li class="nav-item {{#if abclicked}}active{{/if}}">
+                <a class="nav-link" href="/about">About</a>
+            </li>
+
+        </ul>
+
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+            <li>
+                <form class="form-inline ml-auto">
+                    <div class="md-form my-0">
+                        <input class="form-control mr-sm-2" id="anythingSearch" type="text" placeholder="Search"
+                            aria-label="Search">
+
+                    </div>
+                </form>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link waves-effect waves-light" href="/shopping-cart/">
+                    <i class="fas fa-shopping-cart"><span
+                            class="badge badge-danger badge-pill ml-2">{{session.cart.totalQty}}</span></i>
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" data-mdb-display="static">
+                    <i class="fas fa-user"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-sm-right dropdown-menu-end dropdown-menu-sm-end dropdown-menu-lg-start dropdown-default"
+                    aria-labelledby="navbarDropdownMenuLink-333" style="max-width: 50px;">
+                    {{#if login}}
+                    <a class="dropdown-item" href="/user/profile">Account</a>
+                    <hr class="dropdown-divider">
+                    <a class="dropdown-item" href="/user/logout">Logout</a>
+                    {{else}}
+                    <a class="dropdown-item" href="/user/singin">Sign In</a>
+                    <a class="dropdown-item" href="/user/singup">Sign Up</a>
+                    {{/if}}
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!--/.Navbar -->
+

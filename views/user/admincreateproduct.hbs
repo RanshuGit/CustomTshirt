@@ -1,0 +1,150 @@
+<div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar-fixed position-fixed" style="left:0px;">
+
+        <a class="logo-wrapper waves-effect">
+            <h2><strong>Printed Tshirt Designer</strong></h2>
+        </a>
+
+        <div class="list-group list-group-flush">
+            <a href="/user/admin" class="list-group-item list-group-item-action waves-effect">
+                <i class="fa fa-chart-pie mr-3"></i>Dashboard
+            </a>
+            <a href="/user/admin/users" class="list-group-item list-group-item-action waves-effect">
+                <i class="fa fa-user mr-3"></i>Users
+            </a>
+            <a href="/user/admin/products" class="list-group-item list-group-item-action waves-effect">
+                <i class="fa fa-table mr-3"></i>Products
+            </a>
+            <a href="/user/admin/orders" class="list-group-item list-group-item-action waves-effect">
+                <i class="fa fa-dollar-sign mr-3"></i>Orders
+            </a>
+            <a href="/user/admin/clipart" class="list-group-item list-group-item-action waves-effect">
+                <i class="fa fa-icons mr-3"></i>Clipart
+            </a>
+            <a href="/user/admin/messages" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-envelope mr-3"></i>Messages
+            </a>
+        </div>
+
+    </div>
+    <!-- Sidebar -->
+
+    <!--Main layout-->
+    <main class="pt-5 mx-lg-5">
+        <div class="container-fluid mt-5">
+
+            <!-- Heading -->
+            <div class="card mb-4 wow fadeIn" style="left:100px;">
+
+                <!--Card content-->
+                <div class="card-body d-sm-flex justify-content-between">
+
+                    <h4 class="mb-2 mb-sm-0 pt-1">
+                        <a href="/user/admin" target="_blank" style="color : #00695C; ">Admin Home Page</a>
+                        <span>/</span>
+                        <span>Update Product</span>
+                    </h4>
+                    <!--
+                    <form class="d-flex justify-content-center">
+                        
+                        <input type="search" placeholder="Type your query" aria-label="Search" class="form-control">
+                        <button class="btn btn-primary btn-sm my-0 p" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+
+                    </form>
+-->
+                </div>
+
+            </div>
+            <!-- Heading -->
+            <div class="row d-flex justify-content-center">
+
+                <div class="col-md-8 mb-4">
+                    <h2>Create the Product</h2>
+                    <!--Card-->
+                    <div class="card mar-left d-flex justify-content-center align-items-center">
+
+                        <!--Card content-->
+                        <form id="display-product-form" class="card-body" action="/user/admin/createproduct/"
+                            method="post">
+                            <table class="table table-responsive-sm">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Field</th>
+                                        <th>Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        <td>Image Path/Image</td>
+                                        <td>
+                                            <input type="text" class="form-control" id="imagePath"
+                                                placeholder="Image Path" required name="imagePath">
+                                            <div class="invalid-feedback">
+                                                Image Path is required.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Title</td>
+                                        <td>
+                                            <input type="text" class="form-control" id="title" placeholder="Title"
+                                                required name="title">
+                                            <div class="invalid-feedback">
+                                                Title is required.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Description</td>
+                                        <td>
+                                            <input type="text" class="form-control" id="description"
+                                                placeholder="Description" required name="description">
+                                            <div class="invalid-feedback">
+                                                Description is required.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Price</td>
+                                        <td>
+                                            <input type="text" class="form-control" id="price" placeholder="Price"
+                                                required name="price">
+                                            <div class="invalid-feedback">
+                                                Price is required.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Size</td>
+                                        <td>
+                                            <input type="text" class="form-control" id="size" placeholder="Size"
+                                                required name="size">
+                                            <div class="invalid-feedback">
+                                                Size is required.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                            <hr class="mb-4">
+                            <button class="btn  btn-lg btn-block " type="submit" style="background-color : #00695C; color:white;">Create the
+                                Product</button>
+
+
+                        </form>
+
+                    </div>
+                    <!--/.Card-->
+
+                </div>
+                <!--Grid column-->
+            </div>
+        </div>
+    </main>
+    <!--Main layout-->
+</div>

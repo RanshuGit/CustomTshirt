@@ -1,0 +1,276 @@
+<!--Main layout-->
+<main class="mt-5 pt-4">
+    <div class="container wow fadeIn">
+
+        <!-- Heading -->
+        <h2 class="my-5 h2 text-center">Checkout form</h2>
+
+        <!--Grid row-->
+        <div class="row">
+
+            <!--Grid column-->
+            <div class="col-md-8 mb-4">
+
+                <!--Card-->
+                <div class="card">
+
+                    <div id="charge-error" class="alert alert-danger {{#if noError}}d-none{{/if}}">
+                        {{errMsg}}
+                    </div>
+
+                    <!--Card content-->
+                    <form id="checkout-form" class="card-body" action="/checkout" method="post">
+
+                        <!--Grid row-->
+                        <div class="row">
+
+                            <!--Grid column-->
+                            <div class="col-md-6 mb-2">
+
+                                <!--firstName-->
+                                <div class="md-form ">
+                                    <input type="text" id="firstName" class="form-control" required name="firstname">
+                                    <label for="firstName" class="">First name</label>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please Enter First Name.
+                                </div>
+
+                            </div>
+                            <!--Grid column-->
+
+                            <!--Grid column-->
+                            <div class="col-md-6 mb-2">
+
+                                <!--lastName-->
+                                <div class="md-form">
+                                    <input type="text" id="lastName" class="form-control" required name="lastname">
+                                    <label for="lastName" class="">Last name</label>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please Enter Last Name.
+                                </div>
+
+                            </div>
+                            <!--Grid column-->
+
+                        </div>
+                        <!--Grid row-->
+                        <div class="row">
+                            <div class="col-md-8 mb-2">
+                                <!--Email-->
+                                <div class="md-form ">
+
+                                    <input type="text" class="form-control" required aria-describedby="basic-addon1"
+                                        name="email">
+                                    <label for="email">Email</label>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please Enter Email Id.
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 mb-2">
+
+                                <div class="md-form">
+                                    <input type="text" id="pnumber" class="form-control" required name="pnumber">
+                                    <label for="pnumber" class="">Phone Number</label>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please Enter Phone Number.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--address-->
+                        <div class="md-form mb-5">
+                            <input type="text" id="address" class="form-control" required placeholder="Enter your Address"
+                                name="address">
+                            <label for="address" class="">Address</label>
+                        </div>
+                        <div class="invalid-feedback">
+                            Please Enter the Address.
+                        </div>
+
+                        <!--address-2-->
+                        <div class="md-form mb-5">
+                            <input type="text" id="address-2" class="form-control" required placeholder="Apartment or suite"
+                                name="address2">
+                            <label for="address-2" class="">Address 2 </label>
+                        </div>
+
+                        <!--Grid row-->
+                        <div class="row">
+
+                            <!--Grid column-->
+                            <div class="col-lg-4 col-md-12 mb-4">
+
+                                <label for="country">Country</label>
+                                <select class="custom-select d-block w-100" id="country" required name="country">
+                                    <option value="">Choose...</option>
+                                    <option>India</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a valid country.
+                                </div>
+
+                            </div>
+                            <!--Grid column-->
+
+                            <!--Grid column-->
+                            <div class="col-lg-4 col-md-6 mb-4">
+
+                                <label for="state">State</label>
+                                <select class="custom-select d-block w-100" id="state" required name="state">
+                                    <option value="">Choose...</option>
+                                    <option>Maharashtra</option>
+                                    <option>Goa</option>
+                                    <option>Gujarat</option>
+                                    <option>Madhya Pradesh</option>
+                                    <option>Rajashthan</option>
+                                    <option>Uttar Pradesh</option>
+                                    <option>Delhi</option>
+                                    <option>Tamil Nadu</option>
+                                    <option>Assam</option>
+                                    <option>Bihar</option>
+                                    <option>Kerala</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please provide a valid state.
+                                </div>
+
+                            </div>
+                            <!--Grid column-->
+
+                            <!--Grid column-->
+                            <div class="col-lg-4 col-md-6 mb-4">
+
+                                <label for="zip">Pin Code</label>
+                                <input type="text" class="form-control" id="zip" placeholder="Pin Code" required
+                                    name="zip">
+                                <div class="invalid-feedback">
+                                    Zip code required.
+                                </div>
+
+                            </div>
+                            <!--Grid column-->
+
+                        </div>
+                        <!--Grid row-->
+
+                        <hr>
+
+                        <div class="d-block my-3">
+                            <div class="custom-control custom-radio">
+                                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input"
+                                    checked required>
+                                <label class="custom-control-label" for="credit">Credit card</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input"
+                                    required>
+                                <label class="custom-control-label" for="debit">Debit card</label>
+                            </div>
+                            <!--  <div class="custom-control custom-radio">
+                                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input"
+                                    required>
+                                <label class="custom-control-label" for="paypal">Paypal</label>
+                            </div> -->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="cc-name">Name on card</label>
+                                <input type="text" class="form-control" id="cc-name" placeholder="" required
+                                    name="creditname">
+                                <small class="text-muted">Full name as displayed on card</small>
+                                <div class="invalid-feedback">
+                                    Name on card is required
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="cc-number">Credit card number</label>
+                                <input type="text" class="form-control" id="cc-number" placeholder="" required
+                                    name="creditnumber">
+                                <div class="invalid-feedback">
+                                    Credit card number is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label for="cc-expiration">Expiration Month</label>
+                                <input type="text" class="form-control" id="cc-exp-month" placeholder="Month" required
+                                    name="creditexpiry">
+                                <div class="invalid-feedback">
+                                    Expiration date required
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="cc-expiration">Expiration year</label>
+                                <input type="text" class="form-control" id="cc-exp-year" placeholder="Year" required
+                                    name="creditexpiry">
+                                <div class="invalid-feedback">
+                                    Expiration date required
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="cc-expiration">CVV</label>
+                                <input type="text" class="form-control" id="cc-cvv" placeholder="" required
+                                    name="creditcvv">
+                                <div class="invalid-feedback">
+                                    Security code required
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="mb-4">
+                        <button class="btn btn-lg btn-block" style="background-color : #00695C; color:white;" type="submit">Continue to checkout</button>
+
+                    </form>
+
+                </div>
+                <!--/.Card-->
+
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-md-4 mb-4">
+
+                <!-- Heading -->
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Your cart</span>
+                    <span class="badge badge-secondary badge-pill">{{totalqty}}</span>
+                </h4>
+
+                <!-- Cart -->
+                <ul class="list-group mb-3 z-depth-1">
+                    {{#each products}}
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">{{this.item.title}}</h6>
+                            <small class="text-muted">{{this.item.description}}</small>
+                        </div>
+                        <span class="text-muted">Rs.{{this.price}}</span>
+                    </li>
+                    {{/each}}
+
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Total (INR)</span>
+                        <strong>Rs. {{total}}</strong>
+                    </li>
+                </ul>
+                <!-- Cart -->
+
+            </div>
+            <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+    </div>
+</main>
+<!--Main layout-->
+
+
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript" src="javascripts/checkout.js"></script>

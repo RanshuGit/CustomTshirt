@@ -1,0 +1,169 @@
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+    .img-hover-zoom {
+  height: 300px; /* [1.1] Set it as per your need */
+  overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+}
+
+/* [2] Transition property for smooth transformation of images */
+.img-hover-zoom img {
+  transition: transform .5s ease;
+}
+
+/* [3] Finally, transforming the image when container gets hovered */
+.img-hover-zoom:hover img {
+  transform: scale(1.5);
+}
+    </style>
+<div class="row d-flex justify-content-center" style="text-align: center;">
+    
+        <div id="success" class="alert alert-success {{#if noMessages}}d-none{{/if}}">
+            {{successMsg}}
+        </div>
+    
+</div>
+
+<div class="row d-flex justify-content-center" style="text-align: center;">
+    
+        <div id="error" class="alert alert-danger {{#if noerror}}d-none{{/if}}">
+            {{errmsg}}
+        </div>
+   
+</div>
+
+<!--Carousel Wrapper-->
+<div id="carousel-example-1z" class="carousel slide carousel-fade" style="transition: 0.3s" data-ride="carousel">
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+        <!--First slide-->
+        <div class="carousel-item active">
+            <a href="/customize">
+                <img src="images/banner-home.jpg" alt="First slide" class="d-block w-100  image-responsive"
+                     style="max-height: 400px; ">
+            </a>
+        </div>
+        <!--/First slide-->
+        <!--Second slide-->
+        <div class="carousel-item">
+            <a href="/customize">
+                <img src="images/banner2-home.jpg" alt="Second slide" class="d-block w-100 image-responsive"
+                     style="max-height: 400px; ">
+            </a>
+        </div>
+        <!--/Second slide-->
+        <!--Third slide-->
+        <div class="carousel-item">
+            <a href="/customize">
+                <img src="images/banner2.jpeg" alt="Third slide" class="d-block w-100  image-responsive"
+                     style="max-height: 400px; ">
+            </a>
+        </div>
+        <!--/Third slide-->
+    </div>
+    <!--/.Slides-->
+    <!--Controls-->
+    <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+    <!--/.Controls-->
+</div>
+<!--/.Carousel Wrapper-->
+
+
+<div class="row mt-4">
+    <h4 class="col-md-4" style="color:darkslategrey; font-size: 1.9rem; font-weight: bold"><strong style="font-weight: bold;">Featured Products</strong></h4>
+</div>
+<hr>
+
+{{#each products }}
+<!-- Card deck -->
+<div class="card-deck">
+    {{#each this}}
+    <div class="card mb-4 col-md-4 col-sm-6">
+
+        <!--Card image-->
+        <div class="view overlay img-hover-zoom">
+            <img class="card-img-top img-responsive " src="{{this.imagePath}}" alt="Card image cap">
+            <a href="#!">
+                <div class="mask rgba-white-slight"></div>
+            </a>
+        </div>
+
+        <!--Card content-->
+        <div class="card-body">
+
+            <!--Title-->
+            <h4 class="card-title">{{ this.title }}</h4>
+            <h6 class="card-title">Size : {{ this.size }}</h6>
+            <!--Text-->
+            <div>
+                <div class="price float-left">Rs.{{this.price}} </div>
+                <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                <a href="/add-to-cart/{{this._id}}" style="color:white;">
+                    <button type="button" class="btn btn-md float-right" style="background-color : #00695C;">
+                        Add to Cart
+
+                    </button>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    {{/each}}
+    <!-- Card -->
+
+</div>
+{{/each}}
+
+<div class="row">
+    <h4 class="col-md-4" style="color:darkslategrey; font-size: 1.9rem; margin-top: 40px; font-weight: bold"><strong style="font-weight: bold;">Customized Products</strong></h4>
+</div>
+<hr>
+
+{{#each customproducts }}
+<!-- Card deck -->
+<div class="card-deck">
+    {{#each this}}
+    <div class="card mb-4 col-md-4 col-sm-6">
+
+        <!--Card image-->
+       
+        <div class="view overlay img-hover-zoom">
+            <img class="card-img-top img-responsive " src="{{this.imagePath}}" alt="Card image cap">
+            <a href="#!">
+                <div class="mask rgba-white-slight"></div>
+            </a>
+        </div>
+        
+
+        <!--Card content-->
+        <div class="card-body">
+
+            <!--Title-->
+            <h4 class="card-title">{{ this.title }}</h4>
+            <h6 class="card-title">Size : {{ this.size }}</h6>
+            <!--Text-->
+            <div>
+                <div class="price float-left">Rs.{{this.price}} </div>
+                <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                <a href="/add-to-cart/{{this._id}}" style="color:white;">
+                    <button type="button" class="btn btn-md float-right" style="background-color : #00695C;">
+                        Add to
+                        Cart
+                    </button>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    {{/each}}
+    <!-- Card -->
+
+</div>
+{{/each}}

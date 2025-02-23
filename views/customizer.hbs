@@ -1,0 +1,603 @@
+<style>
+        .scroll-box {
+            overflow-y: scroll;
+            height: 400px;
+            padding: 1rem
+        }
+</style>
+
+<link type="text/css" rel="stylesheet" href="stylesheets/jquery.miniColors.css">
+
+
+
+<script type="text/javascript" src="javascripts/fabric.js"></script>
+<script>
+    var $form = $('#customdesign');
+    function saveimage() {
+
+        domtoimage.toPng(shirtDiv)
+            .then(function (dataUrl) {
+                var img = new Image();
+                img.src = dataUrl;
+                var imagePath = dataUrl;
+                console.log(img.src);
+                //document.getElementById("customimage").appendChild(img);
+              //  $(`<img src='${img.src}' style="max-height:50%;">`).appendTo('#customimage');
+                $('#customimage').html(`<img src='${img.src}' style="max-height:50%; width: -moz-available; max-width: -webkit-fill-available">`);
+                document.getElementById("imagePath").value = imagePath;
+                document.getElementById("size").value = document.getElementById("tshirtsize").value;
+                document.getElementById("price").value = document.getElementById("tprice").innerHTML;
+                document.getElementById("priimagePath").value = imagePath;
+                document.getElementById("prisize").value = document.getElementById("tshirtsize").value;
+                document.getElementById("priprice").value = document.getElementById("tprice").innerHTML;
+                console.log(document.getElementById("price").value);
+                console.log(document.getElementById("size").value);
+            })
+            .catch(function (error) {
+                console.error('oops, something went wrong!', error);
+            });
+    };
+
+
+</script>
+
+
+<!--/.Navbar -->
+
+<div class="row d-flex justify-content-center" style="text-align: center;">
+    
+        <div id="error" class="alert alert-danger {{#if noerror}}d-none{{/if}}">
+            {{errmsg}}
+        </div>
+   
+</div>
+
+<div id="success" class="alert alert-warning justify-content-center " style="text-align: center;" >
+            First Click the Save Icon. View the Design in Design Preview then only click Add to Cart/Add to Home.
+        </div>
+<div class="container preview" data-spy="scroll" data-target=".subnav" data-offset="80">
+    <section id="typography">
+
+
+        <!-- Headings & Paragraph Copy -->
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="true" href="#tab1">T-shirt Options</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-body-active" id="tab1">
+                            <div class="card-body">
+
+                                <select id="tshirttype">
+                                    <option value="images/crew_front.png" selected="selected">Short Sleeve Shirts
+                                    </option>
+                                    <option value="images/mens_longsleeve_front.png">Long Sleeve Shirts</option>
+                                    <option value="images/mens_hoodie_front.png">Hoodies</option>
+                                    <option value="images/mens_tank_front.png">Tank tops</option>
+                                </select>
+
+                            </div>
+                            <div class="card-body">
+                                <ul class="nav">
+                                    <li class="color-preview" title="White" style="background-color:#ffffff;"></li>
+                                    <li class="color-preview" title="Dark Heather" style="background-color:#616161;">
+                                    </li>
+                                    <li class="color-preview" title="Gray" style="background-color:#f0f0f0;"></li>
+                                    <li class="color-preview" title="Charcoal" style="background-color:#5b5b5b;">
+                                    </li>
+                                    <li class="color-preview" title="Black" style="background-color:#222222;"></li>
+                                    <li class="color-preview" title="Heather Orange" style="background-color:#fc8d74;">
+                                    </li>
+                                    <li class="color-preview" title="Heather Dark Chocolate"
+                                        style="background-color:#432d26;"></li>
+                                    <li class="color-preview" title="Salmon" style="background-color:#eead91;"></li>
+                                    <li class="color-preview" title="Chesnut" style="background-color:#806355;">
+                                    </li>
+                                    <li class="color-preview" title="Dark Chocolate" style="background-color:#382d21;">
+                                    </li>
+                                    <li class="color-preview" title="Citrus Yellow" style="background-color:#faef93;">
+                                    </li>
+                                    <li class="color-preview" title="Avocado" style="background-color:#aeba5e;">
+                                    </li>
+                                    <li class="color-preview" title="Kiwi" style="background-color:#8aa140;"></li>
+                                    <li class="color-preview" title="Irish Green" style="background-color:#1f6522;">
+                                    </li>
+                                    <li class="color-preview" title="Scrub Green" style="background-color:#13afa2;">
+                                    </li>
+                                    <li class="color-preview" title="Teal Ice" style="background-color:#b8d5d7;">
+                                    </li>
+                                    <li class="color-preview" title="Heather Sapphire"
+                                        style="background-color:#15aeda;"></li>
+                                    <li class="color-preview" title="Sky" style="background-color:#a5def8;"></li>
+                                    <li class="color-preview" title="Antique Sapphire"
+                                        style="background-color:#0f77c0;"></li>
+                                    <li class="color-preview" title="Heather Navy" style="background-color:#3469b7;">
+                                    </li>
+                                    <li class="color-preview" title="Cherry Red" style="background-color:#c50404;">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card text-center mt-4">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="true" href="#tab1">Gravatar</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="card-body" id="tab2">
+                        <div class="card-body">
+                            <div class="row mb-4">
+                                <input class="span2 align-center col-md-8" id="text-string" type="text" style=""
+                                    placeholder="add text here...">
+                                <button id="add-text" class="btn btn-sm d-flex justify-content-center"
+                                    style="background-color: #333333; max-width: 20px;" title="Add Text"><i
+                                        class="fa fa-plus" style="color : antiquewhite;"></i></button>
+                                <hr>
+                            </div>
+                            <div id="avatarlist" class="scroll-box">
+                              <!--   <img style="cursor:pointer; width: -moz-available;
+                                " class="img-polaroid mr-1 mb-1" src="images/invisibleman.jpg" > -->
+                                {{#each clipart}}
+                                <img style="cursor:pointer; width: -moz-available;
+                                " class="img-polaroid mr-1 mb-1" src="{{this.image}}" >
+                                {{/each}}
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class=" col-md-6">
+                <div align="center" style="min-height: 32px;">
+                    <div class="clearfix">
+                        <div class="btn-group inline pull-left" id="texteditor" style="display:none">
+                            <button id="font-family" class="btn dropdown-toggle" data-toggle="dropdown"
+                                title="Font Style"><i class="icon-font" style="width:19px;height:19px;"></i></button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="font-family-X">
+                                <li><a style="color:#222222" tabindex="-1" href="#" onclick="setFont('Arial');"
+                                        class="Arial">Arial</a>
+                                </li>
+                                <li><a style="color:#222222" tabindex="-1" href="#" onclick="setFont('Helvetica');"
+                                        class="Helvetica">Helvetica</a></li>
+                                <li><a style="color:#222222" tabindex="-1" href="#" onclick="setFont('Myriad Pro');"
+                                        class="MyriadPro">Myriad
+                                        Pro</a></li>
+                                <li><a style="color:#222222" tabindex="-1" href="#" onclick="setFont('Delicious');"
+                                        class="Delicious">Delicious</a></li>
+                                <li><a style="color:#222222" tabindex="-1" href="#" onclick="setFont('Verdana');"
+                                        class="Verdana">Verdana</a>
+                                </li>
+                                <li><a style="color:#222222" tabindex="-1" href="#" onclick="setFont('Georgia');"
+                                        class="Georgia">Georgia</a>
+                                </li>
+                                <li><a style="color:#222222" tabindex="-1" href="#" onclick="setFont('Courier');"
+                                        class="Courier">Courier</a>
+                                </li>
+                                <li><a style="color:#222222" tabindex="-1" href="#" onclick="setFont('Comic Sans MS');"
+                                        class="ComicSansMS">Comic Sans MS</a></li>
+                                <li><a style="color:#222222" tabindex="-1" href="#" onclick="setFont('Impact');"
+                                        class="Impact">Impact</a>
+                                </li>
+                                <li><a style="color:#222222" tabindex="-1" href="#" onclick="setFont('Monaco');"
+                                        class="Monaco">Monaco</a>
+                                </li>
+                                <li><a style="color:#222222" tabindex="-1" href="#" onclick="setFont('Optima');"
+                                        class="Optima">Optima</a>
+                                </li>
+                                <li><a style="color:#222222" tabindex="-1" href="#" onclick="setFont('Hoefler Text');"
+                                        class="Hoefler Text">Hoefler Text</a></li>
+                                <li><a style="color:#222222" tabindex="-1" href="#" onclick="setFont('Plaster');"
+                                        class="Plaster">Plaster</a>
+                                </li>
+                                <li><a style="color:#222222" tabindex="-1" href="#" onclick="setFont('Engagement');"
+                                        class="Engagement">Engagement</a></li>
+                            </ul>
+                            <button id="text-bold" class="btn" data-original-title="Bold"><img
+                                    src="images/font_bold.png" height="" width=""></button>
+                            <button id="text-italic" class="btn" data-original-title="Italic"><img
+                                    src="images/font_italic.png" height="" width=""></button>
+                            <button id="text-strike" class="btn" title="Strike" style=""><img
+                                    src="images/font_strikethrough.png" height="" width=""></button>
+                            <button id="text-underline" class="btn" title="Underline" style=""><img
+                                    src="images/font_underline.png"></button>
+                            <a class="btn" href="#" rel="tooltip" data-placement="top" data-original-title="Font Color">
+                                <input type="hidden" id="text-fontcolor" class="color-picker miniColors" size="7" value="#000000">
+                            </a>
+                            <a class="btn" href="#" rel="tooltip" data-placement="top" data-original-title="Font Border Color">
+                                <input type="hidden" id="text-strokecolor" class="color-picker miniColors" size="7" value="#000000">
+                            </a>
+                            <!--- Background <input type="hidden" id="text-bgcolor" class="color-picker" size="7" value="#ffffff"> --->
+                        </div>
+                        <div class="pull-right" align="" id="imageeditor" style="display:none;">
+                            <div class="btn-group">
+                                <button class="btn btn-sm" id="bring-to-front" title="Bring to Front"
+                                    style="background-color: #5b5b5b;">
+                                    <i class="fa fa-fast-backward rotate" style="color : antiquewhite;"></i></button>
+                                <button class="btn btn-sm" id="send-to-back" title="Send to Back"
+                                    style="background-color: #5b5b5b;">
+                                    <i class="fa fa-fast-forward rotate" style="color : antiquewhite;"></i></button>
+                              <!--  <button id="flip" type="button" class="btn btn-sm" title="Show Back View"
+                                    style="background-color: #5b5b5b;">
+                                    <i class="fa fa-retweet" style="color : antiquewhite;"></i></button> -->
+                                <button id="remove-selected" class="btnbtn-sm" title="Delete selected item"
+                                    style="background-color: #5b5b5b;">
+                                    <i class="fa fa-trash" style="color : antiquewhite;"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-between">
+                    <div class="col-4">
+                        <button id="flipback" type="button" class="btn btn-sm align-self-start" title="Rotate View"
+                    style="background-color: #5b5b5b;">
+                    <i class="fa fa-2x fa-retweet" style="color : antiquewhite;"></i></button></div>
+                    <div class="  align-right" style="">
+                        <button onclick="saveimage()" id="saveimage" type="button" class="btn btn-sm align-self-end " title="Save the Design"
+                    style="background-color: #5b5b5b; padding-left: 25.6px; padding-right: 25.6px;">
+                    <i class="fa fa-2x fa-save" style="color : antiquewhite;"></i></button></div>
+ 
+                    
+                    </div>
+                <!--	EDITOR      -->
+               
+                <!--	/EDITOR		-->
+                <div id="shirtDiv" class="page" style=" position: relative; background-color: rgb(255, 255, 255);">
+                    <img name="tshirtview" id="tshirtFacing" src="images/crew_front.png" style="width: -moz-available">
+                    <div id="drawingArea" style="position: absolute; left: 160px; top: 80px;">
+                        <canvas id="tcanvas" width="200" height="450" class="hover"
+                            style="-webkit-user-select: none;"></canvas>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Select Size</h3>
+                    </div>
+                    <div class="card-body d-flex justify-content-center">
+                        <select id="tshirtsize">
+                            <option value="S" selected="selected">Small</option>
+                            <option value="M">
+                                Medium
+                            </option>
+
+                            <option value="L">Large</option>
+                            <option value="XL">Extra Large</option>
+                        </select>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <td>Base Price : Rs.<span id="bprice"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Front Print : Rs. 100</td>
+                        </tr>
+                        <!-- <tr>
+                <td>Back Print : Rs. 50</td>
+            </tr> -->
+                        <tr>
+                            <td>Total Price : Rs. <span id="tprice"></span></td>
+                        </tr>
+                    </table>
+                   
+                    <form id="privateadding" class="align-content-center d-flex justify-content-center"
+                          action="/privateadding" method="post">
+                          
+                        <div class="md-form ">
+                            <input type="hidden" id="priimagePath" class="form-control" name="imagePath">
+                           
+                            <input type="hidden" id="prisize" class="form-control" name="size">
+                            <input type="hidden" id="priprice" class="form-control" name="price">
+                            <button class="btn btn-md" style="background-color : #00695C; color:white;" type="submit">Add to Cart</button>
+                        </div>
+                    </form>
+                    <!--  <a href="/add-to-cart/{{this._id}}">
+            <button type="button" class="btn btn-large btn-block btn-success" name="addToTheBag"
+                id="addToTheBag">Add to Cart <i class="icon-briefcase icon-white"></i></button>
+        </a> -->
+
+                </div>
+                
+    
+        
+ 
+                
+                    <h3 class="mt-3">Design Preview</h3>
+                    <div id="customimage" >
+                        
+                    </div>
+                    <form id="customdesign" class="card-body" action="/addtohome" method="post">
+                    <div class="md-form ">
+                                    <input type="text" id="tshirtname" class="form-control" required name="tshirtname">
+                                    <label for="tshirttname" class="">Tshirt name</label>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please Enter Tshirt Name.
+                                </div>
+                        <div class="md-form ">
+                            
+
+                            <input type="hidden" id="imagePath" class="form-control" name="imagePath">
+                           
+                            <input type="hidden" id="size" class="form-control" name="size">
+                            <input type="hidden" id="price" class="form-control" name="price">
+                            <button  class="btn btn-md" style="background-color : #00695C; color:white;" type="submit">Add the Design to Home Page</button>
+                        </div>
+                    </form>
+            </div>
+
+        </div>
+        
+    </section>
+</div><!-- /container -->
+
+
+
+<!-- Footer ================================================== -->
+
+<script>
+    $(document).ready(function () {
+        $("#tshirttype").change(function () {
+            $("images[name=tshirtview]").attr("src", $(this).val());
+
+        });
+        document.getElementById("bprice").innerHTML = 100;
+        document.getElementById("tprice").innerHTML = 200;
+    });
+   
+</script>
+<!-- Le javascript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script>
+    var valueSelect = $("#tshirttype").val();
+    var sizeSelect = $("#tshirtsize").val();
+    $("#tshirttype").change(function () {
+        valueSelect = $(this).val();
+    /*crew */
+        if (valueSelect === "images/crew_front.png") {
+            $("#tshirtFacing").attr("src", "images/crew_front.png");
+            a = JSON.stringify(canvas);
+            canvas.clear();
+            try {
+                var json = JSON.parse(b);
+                canvas.loadFromJSON(b);
+            }
+            catch (e) { }
+        }
+        else if (valueSelect === "images/mens_longsleeve_front.png") {
+            $("#tshirtFacing").attr("src", "images/mens_longsleeve_front.png");
+            a = JSON.stringify(canvas);
+            canvas.clear();
+            try {
+                var json = JSON.parse(b);
+                canvas.loadFromJSON(b);
+            }
+            catch (e) { }
+        }
+        else if (valueSelect === "images/mens_hoodie_front.png") {
+            $("#tshirtFacing").attr("src", "images/mens_hoodie_front.png");
+            a = JSON.stringify(canvas);
+            canvas.clear();
+            try {
+                var json = JSON.parse(b);
+                canvas.loadFromJSON(b);
+            }
+            catch (e) { }
+        }
+        else if (valueSelect === "images/mens_tank_front.png") {
+            $("#tshirtFacing").attr("src", "images/mens_tank_front.png");
+            a = JSON.stringify(canvas);
+            canvas.clear();
+            try {
+                var json = JSON.parse(b);
+                canvas.loadFromJSON(b);
+            }
+            catch (e) { }
+        }
+    });
+    $("#tshirtsize").change(function () {
+        sizeSelect = $(this).val();
+        /* Short Sleeves*/
+        if (sizeSelect === "S" && (valueSelect === "images/crew_front.png" || valueSelect === "images/crew_back.png")) {
+            document.getElementById("bprice").innerHTML = 100;
+            document.getElementById("tprice").innerHTML = 200;
+        }
+        else if (sizeSelect === "M" && (valueSelect === "images/crew_front.png" || valueSelect === "images/crew_back.png")) {
+            document.getElementById("bprice").innerHTML = 150;
+            document.getElementById("tprice").innerHTML = 250;
+        }
+        else if (sizeSelect === "L" && (valueSelect === "images/crew_front.png" || valueSelect === "images/crew_back.png")) {
+            document.getElementById("bprice").innerHTML = 200;
+            document.getElementById("tprice").innerHTML = 300;
+        }
+        else if (sizeSelect === "XL" && (valueSelect === "images/crew_front.png" || valueSelect === "images/crew_back.png")) {
+            document.getElementById("bprice").innerHTML = 250;
+            document.getElementById("tprice").innerHTML = 350;
+        }
+        /* Long Sleeves */
+        else if (sizeSelect === "S" && (valueSelect === "images/mens_longsleeve_front.png" || valueSelect === "images/mens_longsleeve_back.png")) {
+            document.getElementById("bprice").innerHTML = 150;
+            document.getElementById("tprice").innerHTML = 250;
+        }
+        else if (sizeSelect === "M" && (valueSelect === "images/mens_longsleeve_front.png" || valueSelect === "images/mens_longsleeve_back.png")) {
+            document.getElementById("bprice").innerHTML = 200;
+            document.getElementById("tprice").innerHTML = 300;
+        }
+        else if (sizeSelect === "L" && (valueSelect === "images/mens_longsleeve_front.png" || valueSelect === "images/mens_longsleeve_back.png")) {
+            document.getElementById("bprice").innerHTML = 250;
+            document.getElementById("tprice").innerHTML = 350;
+        }
+        else if (sizeSelect === "XL" && (valueSelect === "images/mens_longsleeve_front.png" || valueSelect === "images/mens_longsleeve_back.png")) {
+            document.getElementById("bprice").innerHTML = 300;
+            document.getElementById("tprice").innerHTML = 400;
+        }
+        /* Hoodie */
+        else if (sizeSelect === "S" && (valueSelect === "images/mens_hoodie_front.png" || valueSelect === "images/mens_hoodie_back.png")) {
+            document.getElementById("bprice").innerHTML = 300;
+            document.getElementById("tprice").innerHTML = 400;
+        }
+        else if (sizeSelect === "M" && (valueSelect === "images/mens_hoodie_front.png" || valueSelect === "images/mens_hoodie_back.png")) {
+            document.getElementById("bprice").innerHTML = 400;
+            document.getElementById("tprice").innerHTML = 500;
+        }
+        else if (sizeSelect === "L" && (valueSelect === "images/mens_hoodie_front.png" || valueSelect === "images/mens_hoodie_back.png")) {
+            document.getElementById("bprice").innerHTML = 500;
+            document.getElementById("tprice").innerHTML = 600;
+        }
+        else if (sizeSelect === "XL" && (valueSelect === "images/mens_hoodie_front.png" || valueSelect === "images/mens_hoodie_back.png")) {
+            document.getElementById("bprice").innerHTML = 550;
+            document.getElementById("tprice").innerHTML = 650;
+        }
+        /* Tank tops*/
+        else if (sizeSelect === "S" && (valueSelect === "images/mens_tank_front.png" || valueSelect === "images/mens_tank_back.png")) {
+            document.getElementById("bprice").innerHTML = 100;
+            document.getElementById("tprice").innerHTML = 200;
+        }
+        else if (sizeSelect === "M" && (valueSelect === "images/mens_tank_front.png" || valueSelect === "images/mens_tank_back.png")) {
+            document.getElementById("bprice").innerHTML = 120;
+            document.getElementById("tprice").innerHTML = 220;
+        }
+        else if (sizeSelect === "L" && (valueSelect === "images/mens_tank_front.png" || valueSelect === "images/mens_tank_back.png")) {
+            document.getElementById("bprice").innerHTML = 150;
+            document.getElementById("tprice").innerHTML = 250;
+        }
+        else if (sizeSelect === "XL" && (valueSelect === "images/mens_tank_front.png" || valueSelect === "images/mens_tank_back.png")) {
+            document.getElementById("bprice").innerHTML = 200;
+            document.getElementById("tprice").innerHTML = 300;
+        }
+    });
+    $('#flipback').click(
+        function () {
+            if (valueSelect === "images/crew_front.png") {
+                if ($(this).attr("data-original-title") == "Show Back View") {
+                    $(this).attr('data-original-title', 'Show Front View');
+                    $("#tshirtFacing").attr("src", "images/crew_back.png");
+                    a = JSON.stringify(canvas);
+                    canvas.clear();
+                    try {
+                        var json = JSON.parse(b);
+                        canvas.loadFromJSON(b);
+                    }
+                    catch (e) { }
+
+                } else {
+                    $(this).attr('data-original-title', 'Show Back View');
+                    $("#tshirtFacing").attr("src", "images/crew_front.png");
+                    b = JSON.stringify(canvas);
+                    canvas.clear();
+                    try {
+                        var json = JSON.parse(a);
+                        canvas.loadFromJSON(a);
+                    }
+                    catch (e) { }
+                }
+            }
+
+            else if (valueSelect === "images/mens_longsleeve_front.png") {
+                if ($(this).attr("data-original-title") == "Show Back View") {
+                    $(this).attr('data-original-title', 'Show Front View');
+                    $("#tshirtFacing").attr("src", "images/mens_longsleeve_back.png");
+                    a = JSON.stringify(canvas);
+                    canvas.clear();
+                    try {
+                        var json = JSON.parse(b);
+                        canvas.loadFromJSON(b);
+                    }
+                    catch (e) { }
+
+                } else {
+                    $(this).attr('data-original-title', 'Show Back View');
+                    $("#tshirtFacing").attr("src", "images/mens_longsleeve_front.png");
+                    b = JSON.stringify(canvas);
+                    canvas.clear();
+                    try {
+                        var json = JSON.parse(a);
+                        canvas.loadFromJSON(a);
+                    }
+                    catch (e) { }
+                }
+            }
+            else if (valueSelect === "images/mens_tank_front.png") {
+                if ($(this).attr("data-original-title") == "Show Back View") {
+                    $(this).attr('data-original-title', 'Show Front View');
+                    $("#tshirtFacing").attr("src", "images/mens_tank_back.png");
+                    a = JSON.stringify(canvas);
+                    canvas.clear();
+                    try {
+                        var json = JSON.parse(b);
+                        canvas.loadFromJSON(b);
+                    }
+                    catch (e) { }
+
+                } else {
+                    $(this).attr('data-original-title', 'Show Back View');
+                    $("#tshirtFacing").attr("src", "images/mens_tank_front.png");
+                    b = JSON.stringify(canvas);
+                    canvas.clear();
+                    try {
+                        var json = JSON.parse(a);
+                        canvas.loadFromJSON(a);
+                    }
+                    catch (e) { }
+                }
+            }
+            else if (valueSelect === "images/mens_hoodie_front.png") {
+                if ($(this).attr("data-original-title") == "Show Back View") {
+                    $(this).attr('data-original-title', 'Show Front View');
+                    $("#tshirtFacing").attr("src", "images/mens_hoodie_back.png");
+                    a = JSON.stringify(canvas);
+                    canvas.clear();
+                    try {
+                        var json = JSON.parse(b);
+                        canvas.loadFromJSON(b);
+                    }
+                    catch (e) { }
+
+                } else {
+                    $(this).attr('data-original-title', 'Show Back View');
+                    $("#tshirtFacing").attr("src", "images/mens_hoodie_front.png");
+                    b = JSON.stringify(canvas);
+                    canvas.clear();
+                    try {
+                        var json = JSON.parse(a);
+                        canvas.loadFromJSON(a);
+                    }
+                    catch (e) { }
+                }
+            }
+
+            canvas.renderAll();
+            setTimeout(function () {
+                canvas.calcOffset();
+            }, 200);
+        });
+
+</script>
+
+<script type="text/javascript" src="javascripts/tshirtEditor.js"></script>
+<script type="text/javascript" src="javascripts/jquery.miniColors.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+    integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA=="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.js"
+    integrity="sha512-UNbeFrHORGTzMn3HTt00fvdojBYHLPxJbLChmtoyDwB6P9hX5mah3kMKm0HHNx/EvSPJt14b+SlD8xhuZ4w9Lg=="
+    crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>
+

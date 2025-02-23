@@ -1,0 +1,111 @@
+<div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar-fixed position-fixed" style="left:0px;">
+
+        <a class="logo-wrapper waves-effect">
+            <h2><strong>Printed Tshirt Designer</strong></h2>
+        </a>
+
+        <div class="list-group list-group-flush">
+            <a href="/user/admin" class="list-group-item a list-group-item-action waves-effect">
+                <i class="fa fa-chart-pie mr-3"></i>Dashboard
+            </a>
+            <a href="/user/admin/users" class="list-group-item list-group-item-action waves-effect">
+                <i class="fa fa-user mr-3"></i>Users
+            </a>
+            <a href="/user/admin/products" class="list-group-item list-group-item-action waves-effect">
+                <i class="fa fa-table mr-3"></i>Products
+            </a>
+            <a href="/user/admin/orders" class="list-group-item list-group-item-action waves-effect">
+                <i class="fa fa-dollar-sign mr-3"></i>Orders
+            </a>
+            <a href="/user/admin/clipart" class="list-group-item active list-group-item-action waves-effect" style="background-color : #00695C; color:white;">
+                <i class="fa fa-icons mr-3"></i>Clipart
+            </a>
+            <a href="/user/admin/messages" class="list-group-item list-group-item-action waves-effect">
+                <i class="fas fa-envelope mr-3"></i>Messages
+            </a>
+        </div>
+
+    </div>
+    <!-- Sidebar -->
+
+    <!--Main layout-->
+    <main class="pt-5 mx-lg-5">
+        <div class="container-fluid mt-5">
+            <div class="row d-flex justify-content-center">
+                <div class="col-sm-6 col-md-4">
+                    <div id="success" class="alert alert-success {{#if noMessage}}d-none{{/if}}">
+                        {{successMsg}}
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-sm-6 col-md-4">
+                    <div id="error" class="alert alert-danger {{#if noError}}d-none{{/if}}">
+                        {{errMsg}}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Heading -->
+            <div class="card mb-4 wow fadeIn" style="left:100px;">
+
+                <!--Card content-->
+                <div class="card-body d-sm-flex justify-content-between">
+
+                    <h4 class="mb-2 mb-sm-0 pt-1">
+                        <a href="/user/admin" style="color : #00695C;" target="_blank">Admin Home Page</a>
+                        <span>/</span>
+                        <span>Cliparts</span>
+                    </h4>
+                    <!--
+                    <form class="d-flex justify-content-center">
+                        
+                        <input type="search" placeholder="Type your query" aria-label="Search" class="form-control">
+                        <button class="btn btn-primary btn-sm my-0 p" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+
+                    </form>
+-->
+                    <a href="/user/admin/addclipart/">
+                        <button class="btn btn-sm " style="background-color : #00695C; color:white;">
+                            <i class="fa fa-plus mr-2"></i>Create(Add) ClipArt
+                        </button>
+                    </a>
+                </div>
+
+            </div>
+            <!-- Heading -->
+            <div class="card mar-left ">
+                <div class="card-body ">
+                    <table class="table table-responsive-sm align-items-center">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">Image</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each clipart}}
+                            <tr>
+                                <td><img src="{{this.image}}" style="width:50px; height:50px;"></td>
+                                <td class="">
+                                    <a href="/user/admin/removeclipart/{{this._id}}">
+                                        <button class="btn-danger" type="button">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <!--Main layout-->
+</div>

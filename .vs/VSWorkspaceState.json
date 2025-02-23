@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\routes",
+    "\\views",
+    "\\views\\email",
+    "\\views\\layouts",
+    "\\views\\partials",
+    "\\views\\shop",
+    "\\views\\user"
+  ],
+  "SelectedNode": "\\views\\partials\\footer.hbs",
+  "PreviewInSolutionExplorer": false
+}

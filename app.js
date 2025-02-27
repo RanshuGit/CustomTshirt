@@ -18,7 +18,7 @@ var adminRouter = require('./routes/admin');
 
 var app = express();
 
-mongoose.connect('mongodb://localhost:27017/customtshirt', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, function (err) {
+mongoose.connect('mongodb+srv://rajputanshu1382:q74NIZjgk4N5SS4I@cluster0.burzy.mongodb.net/customtshirt?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, function (err) {
   if (err) throw err;
   console.log('MongoDB Successfully connected');
 });

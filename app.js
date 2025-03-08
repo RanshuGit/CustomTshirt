@@ -10,15 +10,15 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var validator = require('express-validator');
 var MongoStore = require('connect-mongo')(session);
-
+require('dotenv').config();
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
 
 
 var app = express();
-
-mongoose.connect('mongodb+srv://rajputanshu1382:q74NIZjgk4N5SS4I@cluster0.burzy.mongodb.net/customtshirt?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, function (err) {
+const mongoURI = process.env.MONGO_URI;
+mongoose.connect(mongoURI, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, function (err) {
   if (err) throw err;
   console.log('MongoDB Successfully connected');
 });

@@ -1,4 +1,5 @@
-Stripe.setPublishableKey('pk_test_51Hyt96Lrxata1dmuxgcIi6zMLiAmLMm4zTY8MbJmrlusDv9D6xxQsPhTj88UrVVolL2ipJLeyeyGdcXhzDIpvjII001FvbL0Lm');
+require('dotenv').config();
+Stripe.setPublishableKey(process.env.STRIPE_PUB_API_KEY);
 
 var $form = $('#checkout-form');
 

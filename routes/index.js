@@ -3,6 +3,7 @@ var router = express.Router();
 var nodemailer = require('nodemailer');
 var hbs = require('nodemailer-express-handlebars');
 var Cart = require('../models/cart');
+require('dotenv').config();
 
 
 var Product = require('../models/product');
@@ -132,7 +133,7 @@ router.post('/checkout',isLoggedIn ,function(req, res, next) {
   var cart = new Cart(req.session.cart);
 
   const Stripe = require('stripe');
-  const stripe = Stripe('sk_test_51Hyt96Lrxata1dmuVFRNqEwrcVzelwfxfflRnvmlyVX1tovJs9hW9kqTH3tCHNS8QQV5Yb91NU9wghYCACSK4GJ300NgUwkfVG');
+  const stripe = Stripe(process.env.STRIPE_SEC_API_KEY);
   stripe.charges.create({
     amount: cart.totalPrice * 100,
     currency: "inr",
@@ -187,48 +188,6 @@ router.post('/checkout',isLoggedIn ,function(req, res, next) {
 
           };
 
-         
-
-        //   let transporter = nodemailer.createTransport({
-        //       host: 'smtp.gmail.com',
-        //       port: 587,
-        //       secure: true,
-        //       auth: {
-
-        //           user: 'printedtshirtdesigner@gmail.com',
-        //           pass: 'printedtshirt'
-        //       },
-        //       tls: {
-
-        //           rejectUnauthorized: false
-        //       }
-        //   });
-
-        //   transporter.use('compile', hbs(options));
-        //   // send mail with defined transport object
-        //   transporter.sendMail({
-        //       from: '"Printed Tshirt Designer" <printedtshirtdesigner@gmail.com>', // sender address
-        //       to: req.body.email, // list of receivers
-
-        //       subject: "Order Booking Confirmation", // Subject line
-        //      // html: mailmessage, // html body
-        //       template: 'email_body',
-
-        //        context: {
-
-        //            products: cart.generateArray(),
-        //            totalPrice: cart.totalPrice,
-        //            totalqty: cart.totalQty,
-        //             First_Name: req.body.firstname ,
-        //              Last_Name :req.body.lastname,
-        //  Address1 : req.body.address,
-        //  Address2: req.body.address2,
-        //  Phone : req.body.pnumber,
-        //  Order_Id : order.id,
-        //  Payment_Id: charge.id
-
-        //        }
-        //    });
     order.save(function(err, result) {
       req.flash('success', 'Successfully Bought the Tshirts');
       req.session.cart = null;
@@ -331,30 +290,6 @@ router.post('/message', function (req, res, next) {
     <h3> Message </h3>
     <h4>${req.body.message}</h4>
     `;
-
-//     let transporter = nodemailer.createTransport({
-//         host: 'smtp.gmail.com',
-//         port: 465,
-//         secure: true,
-//         auth: {
-//             user: 'printedtshirtdesigner@gmail.com',
-//             pass: 'printedtshirt'
-//         },
-//          tls: {
-            
-//             rejectUnauthorized: false
-//         }
-//     });
-
-//     //transporter.use('compile', hbs(options));
-//     // send mail with defined transport object
-//      transporter.sendMail({
-//         from: '"Printed Tshirt Designer" <printedtshirtdesigner@gmail.com>', // sender address
-//          to: "printedtshirtdesigner@gmail.com", // list of receivers
-        
-//          subject: "New Message From Customer", // Subject line
-//         html: mailmessage, // html body
-//     });
  
  });
 
